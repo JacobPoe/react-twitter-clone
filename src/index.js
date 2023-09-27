@@ -7,8 +7,9 @@ import reportWebVitals from './reportWebVitals';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
+import middleware from './middleware';
 
-const store = createStore(reducers);
+const store = createStore(reducers, middleware);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
