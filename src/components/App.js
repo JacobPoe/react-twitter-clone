@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import LoadingBar from 'react-redux-loading-bar';
+import { RouterProvider } from 'react-router';
 
 import Dashboard from './Dashboard';
+import NewTweet from './NewTweet';
 
 const App = (props) => {
   useEffect(() => {
@@ -13,7 +15,7 @@ const App = (props) => {
   return (
     <div>
       <LoadingBar />
-      {props.loading === true ? null : <Dashboard />}
+      {props.loading === true ? null : <NewTweet />}
     </div>
   );
 };
