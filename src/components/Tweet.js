@@ -6,20 +6,11 @@ import {
   TiHeartOutline,
   TiHeartFullOutline
 } from 'react-icons/ti';
-import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
-
-const withRouter = (Component) => {
-  const ComponentWithRouterProp = (props) => {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return <Component {...props} router={{ location, navigate, params }} />;
-  };
-
-  return ComponentWithRouterProp;
-};
+import { useNavigate, Link } from 'react-router-dom';
 
 const Tweet = (props) => {
+  const navigate = useNavigate();
+
   const handleLike = (event, id) => {
     event.preventDefault();
 
@@ -36,7 +27,7 @@ const Tweet = (props) => {
 
   const toParent = (event, id) => {
     event.preventDefault();
-    props.history.push(`/tweet/${id}`);
+    navigate(`/tweet/${id}`);
   };
 
   if (props.tweet === null) {
@@ -100,4 +91,4 @@ const mapStateToProps = ({ authedUser, users, tweets }, { id }) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(Tweet));
+export default connect(mapStateToProps)(Tweet);
