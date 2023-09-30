@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { formatDate, formatTweet } from '../utils/helpers';
+import { handleToggleTweet } from '../actions/tweets';
 import {
   TiArrowBackOutline,
   TiHeartOutline,
@@ -7,15 +8,24 @@ import {
 } from 'react-icons/ti';
 
 const Tweet = (props) => {
-  const toParent = (event, id) => {
-    event.preventDefault();
-
-    // TODO: Redirect to parent tweet
-  };
   const handleLike = (event, id) => {
     event.preventDefault();
 
     // TODO: Save like
+    const { dispatch, tweet, authedUser } = props;
+    dispatch(
+      handleToggleTweet({
+        id: tweet.id,
+        hasLiked: tweet.hasLiked,
+        authedUser: authedUser
+      })
+    );
+  };
+
+  const toParent = (event, id) => {
+    event.preventDefault();
+
+    // TODO: Redirect to parent tweet
   };
 
   if (props.tweet === null) {
