@@ -8,14 +8,17 @@ import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers';
 import middleware from './middleware';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const store = createStore(reducers, middleware);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { handleAddTweet } from '../actions/tweets';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const NewTweet = ({ dispatch, id }) => {
+  const navigate = useNavigate();
   const [text, setText] = useState('');
 
   const handleSetText = (event) => {
@@ -13,10 +15,12 @@ const NewTweet = ({ dispatch, id }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log('New Tweet: ', text);
+    dispatch(handleAddTweet(text, id));
     setText('');
 
-    dispatch(handleAddTweet(text, id));
+    if (!id) {
+      navigate('/');
+    }
   };
 
   const charactersRemaining = 280 - text.length;
