@@ -4,7 +4,7 @@ import {
   TiArrowBackOutline,
   TiHeartOutline,
   TiHeartFullOutline
-} from 'react-icons';
+} from 'react-icons/ti';
 
 const Tweet = (props) => {
   const toParent = (event, id) => {
@@ -29,18 +29,19 @@ const Tweet = (props) => {
     <div className="tweet">
       <img src={avatar} alt={`${name}'s avatar`} className="avatar" />
       <div className="tweet-info">
-        <span>{name}</span>
-        <div>{formatDate(timestamp)}</div>
-        {parent && (
-          <button
-            className="replying-to"
-            onClick={(event) => toParent(event, parent.id)}
-          >
-            Replying to @{parent.author}
-          </button>
-        )}
-
-        <p>{text}</p>
+        <div>
+          <span>{name}</span>
+          <div>{formatDate(timestamp)}</div>
+          {parent && (
+            <button
+              className="replying-to"
+              onClick={(event) => toParent(event, parent.id)}
+            >
+              Replying to @{parent.author}
+            </button>
+          )}
+          <p>{text}</p>
+        </div>
         <div className="tweet-icons">
           <TiArrowBackOutline className="tweet-icon" />
           <span>{replies !== 0 && replies}</span>
